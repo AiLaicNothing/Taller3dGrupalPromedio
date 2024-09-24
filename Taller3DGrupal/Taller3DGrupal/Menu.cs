@@ -35,8 +35,10 @@ namespace Taller3DGrupal
 
             Recolector recolector = new Recolector();
             Maintenance_structure mantenimiento = new Maintenance_structure();
+            TorreDefensa defensa = new TorreDefensa();
             TipoDeEstructura.Add(recolector);
             TipoDeEstructura.Add(mantenimiento);
+            TipoDeEstructura.Add(defensa);
 
         }
 
@@ -188,6 +190,18 @@ namespace Taller3DGrupal
                     break;
 
                 case 3:
+                    TorreDefensa defensa = new TorreDefensa();
+                    if (playerMoney < defensa.Price)
+                    {
+                        Console.WriteLine("No tienes suficiente dinero");
+                    }
+                    else
+                    {
+                        playerMoney = defensa.Build(playerMoney);
+                        PlayersStructures.Add(defensa);
+                        Console.WriteLine($"se añadio un {defensa.Name}");
+                        Console.ReadKey();
+                    }
                     break;
             }
         }
