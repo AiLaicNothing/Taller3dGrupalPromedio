@@ -11,14 +11,30 @@ namespace Taller3DGrupal
         bool playerTurn = true;
         public int playerMoney = 50;
         public int maxStructure = 4;
+
+        private List<Structure> TipoDeEstructura;
+        private List<Structure> PlayersStructures;
+
         public Menu()
         {
-
+          TipoDeEstructura = new List<Structure>();
+            PlayersStructures = new List<Structure>();
         }
         public void Execute()
         {
+            StructureType();
+
+
             StartGame();
         }
+        public void StructureType()//estructuras existentes
+        {
+        
+            Recolector recolector = new Recolector();   
+            TipoDeEstructura.Add( recolector );
+        
+        }
+
         public void StartGame()
         {
             int wave = 1;
@@ -54,6 +70,7 @@ namespace Taller3DGrupal
                     case 1:
                         Console.Clear();
                         //Enseñar estructuras del jugador
+                        ShowPlayerStructures();
                         Console.ReadKey();
                         break;
 
@@ -61,6 +78,15 @@ namespace Taller3DGrupal
                         Console.Clear();
                         // Crear estructura
                         // crea un if (checkea si la cantidad de estructuras del jugador es igual al maximo de estrucura) si es mayor dile que no puede crear mas, sino le dejas crear nomas
+                        if (PlayersStructures.Count <= maxStructure)
+                        {
+                            CreateStructure();
+
+                        }
+                        else
+                        {
+                            Console.WriteLine(" no puedes seguir construllendo");
+                        }
                         playerTurn = false;
                         break;
 
@@ -79,21 +105,51 @@ namespace Taller3DGrupal
         }
         public void ShowPlayerStructures()
         {
+            int count = 0;  
+
             Console.WriteLine("[This is a list of structures you have]");
             //Show list;
+            foreach (Structure structure in PlayersStructures)
+            {
+              count ++;
+              Console.WriteLine($"{count}. {structure.Name}  ");
+
+            }
         }
 
         public void CreateStructure()
         {
             Console.WriteLine("Choose a structure to build");
+
+
+
             int count = 0;
             //Enseñar opciones de structuras
+            foreach (Structure structure in TipoDeEstructura)
+            {
+                count++;
+                Console.WriteLine($"{count}. {structure.GetInfo()}  ");
+
+            }
 
             int option = int.Parse (Console.ReadLine());
             switch (option)
             {
                 case 1:
                     //if- checkea si tiene suficiente dinero, si no tiene le dices le avisas,sino agregas a la lista y descuentas el dinero
+                    Recolector recolector = new Recolector();
+                    if (playerMoney < recolector.Price)
+                    {
+                        Console.WriteLine("No tienes suficiente dinero");
+
+                    }
+                    else
+                    {
+                        recolector.Build(playerMoney);
+                        PlayersStructures.Add (recolector);
+                        Console.WriteLine($"se añadió un {recolector.Name}");
+                        Console.ReadKey ();
+                    }
                     break;
 
                 case 2:

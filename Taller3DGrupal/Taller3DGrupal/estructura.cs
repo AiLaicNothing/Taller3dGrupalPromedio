@@ -16,19 +16,19 @@ namespace Taller3DGrupal
 
 
         public string Name
-        { 
-        get { return name; } 
+        {
+            get { return name; }
         }
 
         public string Description
         {
             get { return description; }
         }
-        public string Price
+        public int Price
         {
             get { return price; }
         }
-        public string Hp
+        public int Hp
         {
             get { return hp; }
         }
@@ -37,16 +37,16 @@ namespace Taller3DGrupal
             return $"{name} - {description}- Cost:{Price}";
         }
         public virtual int Build(int money)
-        { 
-        return money =- price;
+        {
+            return money = -price;
         }
         public virtual int Function(int value)
         {
             return 0;
         }
         public virtual int GetDamaged(int enemyDamage)
-        { 
-        return hp -= enemyDamage;
+        {
+            return hp -= enemyDamage;
         }
 
     }
