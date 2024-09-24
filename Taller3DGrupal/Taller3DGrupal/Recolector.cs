@@ -23,7 +23,7 @@ namespace Taller3DGrupal
         }
         public override int Build(int money)
         {
-            return money =- price;
+            return money -= price;
         }
         public override int Function(int money)
         {

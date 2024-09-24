@@ -38,7 +38,7 @@ namespace Taller3DGrupal
         }
         public virtual int Build(int money)
         {
-            return money = -price;
+            return money -= price;
         }
         public virtual int Function(int value)
         {

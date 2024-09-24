@@ -155,11 +155,10 @@ namespace Taller3DGrupal
                     if (playerMoney < recolector.Price)
                     {
                         Console.WriteLine("No tienes suficiente dinero");
-
                     }
                     else
-                    {
-                        recolector.Build(playerMoney);
+                    {                        
+                        playerMoney= recolector.Build(playerMoney);
                         PlayersStructures.Add(recolector);
                         Console.WriteLine($"se añadió un {recolector.Name}");
                         Console.ReadKey();
@@ -171,11 +170,10 @@ namespace Taller3DGrupal
                     if (playerMoney < mantenimiento.Price)
                     {
                         Console.WriteLine("No tienes suficiente dinero");
-
                     }
                     else
                     {
-                        mantenimiento.Build(playerMoney);
+                        playerMoney = mantenimiento.Build(playerMoney);
                         PlayersStructures.Add(mantenimiento);
                         Console.WriteLine($"se añadio un {mantenimiento.Name}");
                         Console.ReadKey();
@@ -241,7 +239,8 @@ namespace Taller3DGrupal
         {
             foreach (Enemy enemy in enemies)
             {
-                if (PlayersStructures.OfType<Maintenance_structure>() !=null)
+                /*if (PlayersStructures.OfType<Maintenance_structure>() !=null)*/
+                if(PlayersStructures.Exists(structure=> structure is Maintenance_structure))
                 {
                     enemy.EnemyAttack(PlayersStructures.OfType<Maintenance_structure>().First().Hp);
                     PlayersStructures.OfType<Maintenance_structure>().First().GetDamaged(enemy.damage);
@@ -249,8 +248,9 @@ namespace Taller3DGrupal
                     {
                         PlayersStructures.Remove(PlayersStructures.OfType<Maintenance_structure>().First());
                     }
-                }                
-                else if (PlayersStructures.OfType<Recolector>() != null)
+                }
+                //else if (PlayersStructures.OfType<Recolector>() != null)
+                else if (PlayersStructures.Exists(structure => structure is Recolector))
                 {
                     enemy.EnemyAttack(PlayersStructures.OfType<Recolector>().First().Hp);
                     PlayersStructures.OfType<Recolector>().First().GetDamaged(enemy.damage);
