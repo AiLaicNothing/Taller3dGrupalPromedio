@@ -30,9 +30,11 @@ namespace Taller3DGrupal
         public void StructureType()//estructuras existentes
         {
         
-            Recolector recolector = new Recolector();   
+            Recolector recolector = new Recolector();
+            Maintenance_structure mantenimiento = new Maintenance_structure();
             TipoDeEstructura.Add( recolector );
-        
+            TipoDeEstructura.Add(mantenimiento);
+
         }
 
         public void StartGame()
@@ -153,6 +155,19 @@ namespace Taller3DGrupal
                     break;
 
                 case 2:
+                    Maintenance_structure mantenimiento = new Maintenance_structure();
+                    if (playerMoney < mantenimiento.Price)
+                    {
+                        Console.WriteLine("No tienes suficiente dinero");
+                        
+                    }
+                    else
+                    {
+                        mantenimiento.Build(playerMoney);
+                        PlayersStructures.Add(mantenimiento);
+                        Console.WriteLine($"se añadio un {mantenimiento.Name}");
+                        Console.ReadKey ();
+                    }
                     break;
 
                 case 3:
