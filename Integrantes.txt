@@ -1,0 +1,5 @@
+Martin-Menu(funciones de estructura, base delgameplay-organizacion)
+Francesca- clase-Estructura, clase recolector y funciones relacionadas al menu(añadir a lista que se puedan comprar)
+Manuel- clase Mantenimiento,funciones relacionadas al menu(añadir a lista, que se puedan comprar)
+Sergio- clase TorreDeDefensa, funciones relacionadas al menu(añadir a lista, que se puedan comprar)
+Libe - clase Enemigo, funciones en el menu(Spawneo y ataque a estructuras)
