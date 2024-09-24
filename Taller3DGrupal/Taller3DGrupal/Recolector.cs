@@ -8,7 +8,7 @@ namespace Taller3DGrupal
 {
     internal class Recolector: Structure
     {
-        private int MoneyGeneration = 18;
+        public int MoneyGeneration = 18;
         public Recolector()
         {
             name = "Recolector";

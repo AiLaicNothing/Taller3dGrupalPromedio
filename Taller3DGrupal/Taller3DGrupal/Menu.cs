@@ -10,6 +10,7 @@ namespace Taller3DGrupal
     {
         bool playerTurn = true;
         public int playerMoney = 50;
+        public int minStructure = 4;
         public int maxStructure = 4;
         int wave;
 
@@ -27,8 +28,6 @@ namespace Taller3DGrupal
         public void Execute()
         {
             StructureType();
-
-
             StartGame();
         }
         public void StructureType()//estructuras existentes
@@ -49,8 +48,16 @@ namespace Taller3DGrupal
             {
                 Console.Clear();
                 Console.WriteLine($"[Wave-{wave}]");
+                StructureFunction();
                 PlayerTurn();
                 EnemyTurn();
+                if(PlayersStructures.Count <= 0)
+                {
+                    Console.WriteLine("[You lose]");
+                    Console.WriteLine($"You have been alive for {wave} turns");
+                    Console.ReadKey();
+                    continueWave = false;
+                }
                 wave++;
                 playerTurn = true;
             }
@@ -63,7 +70,7 @@ namespace Taller3DGrupal
             {
                 Console.WriteLine("[Player Turn]");
                 Console.WriteLine($"[Money = {playerMoney}]");
-                Console.WriteLine($"[MaxStructure = {maxStructure}]");
+                Console.WriteLine($"[Structures = {maxStructure}/{PlayersStructures.Count}]");
                 Console.WriteLine("Selecciona una acción");
                 Console.WriteLine("1. Show your structures");
                 Console.WriteLine("2. Create structures");
@@ -185,6 +192,21 @@ namespace Taller3DGrupal
             }
         }
 
+        public void StructureFunction()
+        {
+            foreach (var structure in PlayersStructures)
+            {
+                if(structure  is Recolector recolector)
+                {
+                    playerMoney = recolector.Function(playerMoney);
+                }
+                if (structure is Maintenance_structure maintanece)
+                {
+                    int ammount = PlayersStructures.OfType<Maintenance_structure>().Count();
+                    maxStructure = minStructure + ammount;
+                }
+            }
+        }
         public void EnemyTurn()
         {
             Console.WriteLine("Enemy Turn");
@@ -237,9 +259,9 @@ namespace Taller3DGrupal
 
         public void EnemyAttack()
         {
+            Console.Clear();
             foreach (Enemy enemy in enemies)
             {
-                /*if (PlayersStructures.OfType<Maintenance_structure>() !=null)*/
                 if(PlayersStructures.Exists(structure=> structure is Maintenance_structure))
                 {
                     enemy.EnemyAttack(PlayersStructures.OfType<Maintenance_structure>().First().Hp);
@@ -249,7 +271,6 @@ namespace Taller3DGrupal
                         PlayersStructures.Remove(PlayersStructures.OfType<Maintenance_structure>().First());
                     }
                 }
-                //else if (PlayersStructures.OfType<Recolector>() != null)
                 else if (PlayersStructures.Exists(structure => structure is Recolector))
                 {
                     enemy.EnemyAttack(PlayersStructures.OfType<Recolector>().First().Hp);
