@@ -11,7 +11,7 @@ namespace Taller3DGrupal
     {
         private string name;
         private int hP;
-        private int damage;
+        public int damage;
         private int turn;
 
         public Enemy(string nm, int hp, int dmg, int trn)
@@ -22,10 +22,10 @@ namespace Taller3DGrupal
             this.turn = trn;
         }
 
-        public void EnemyAttack(int strtr)
+        public void EnemyAttack(int strtrHP)
         {
-            strtr -= damage;
-            Console.WriteLine($"The enemy {name} has dealt {damage} damage to {strtr}.");
+            strtrHP -= damage;
+            Console.WriteLine($"The enemy {name} has dealt {damage} damage.");
         }
         
         public void RemainingHP(int damageDefStructure)
@@ -44,6 +44,11 @@ namespace Taller3DGrupal
         public void GetTurn(int turn)
         {
             turn++;
+        }
+
+        public string GetInfo()
+        {
+            return $"{name}: Health-{hP}, Damage-{damage}.";
         }
         
     }
