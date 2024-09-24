@@ -19,7 +19,8 @@ namespace Taller3DGrupal
         public override string GetInfo()
         {
             return base.GetInfo();
-               }
+              
+        }
         public override int Build(int money)
         {
             return money =- price;
@@ -30,7 +31,7 @@ namespace Taller3DGrupal
         }
         public override int GetDamaged(int enemydamage)
         { 
-        return base.GetDamaged(enemydamage);    
+            return base.GetDamaged(enemydamage);    
         }
     }
         }
