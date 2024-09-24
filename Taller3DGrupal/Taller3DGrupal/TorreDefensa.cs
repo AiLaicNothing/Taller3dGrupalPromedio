@@ -8,7 +8,7 @@ namespace Taller3DGrupal
 {
     internal class TorreDefensa: Structure
     {
-        public int damage;
+        public int damage = 6;
         
         public TorreDefensa() 
         {

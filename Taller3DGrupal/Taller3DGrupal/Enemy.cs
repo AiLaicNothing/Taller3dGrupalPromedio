@@ -10,9 +10,9 @@ namespace Taller3DGrupal
     internal class Enemy
     {
         private string name;
-        private int hP;
+        public int hP;
         public int damage;
-        private int turn;
+        public int turn;
 
         public Enemy(string nm, int hp, int dmg, int trn)
         {
@@ -22,33 +22,33 @@ namespace Taller3DGrupal
             this.turn = trn;
         }
 
-        public void EnemyAttack(int strtrHP)
+        public void EnemyAttack(int strtrHP, string structure)
         {
             strtrHP -= damage;
-            Console.WriteLine($"The enemy {name} has dealt {damage} damage.");
+            Console.WriteLine($"The enemy {name} has dealt {damage} damage to {structure}.");
         }
         
         public void RemainingHP(int damageDefStructure)
         {
-            hP -= damageDefStructure;
-            if ( hP > 0)
+            this.hP  -= damageDefStructure;
+            if ( this.hP > 0)
             {
                 Console.WriteLine($"The enemy {name} has taken {damageDefStructure} damage.");
             }
-            else if ( hP <= 0)
+            else if ( this.hP <= 0)
             {
                 Console.WriteLine($"The enemy {name} has been defeated.");
             }
         }
 
-        public void GetTurn(int turn)
+        public void GetTurn()
         {
             turn++;
         }
 
         public string GetInfo()
         {
-            return $"{name}: Health-{hP}, Damage-{damage}.";
+            return $"{name}: Health:{hP}, Damage:{damage}.";
         }
         
     }

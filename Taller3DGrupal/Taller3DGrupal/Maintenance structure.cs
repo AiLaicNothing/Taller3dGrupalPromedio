@@ -11,7 +11,7 @@ namespace Taller3DGrupal
 {
     internal class Maintenance_structure: Structure
     {
-        private int capacidadConstruccion = 1; // Capacidad inicial de construcción
+        private int capacidadConstruccion = 2; // Capacidad inicial de construcción
         public Maintenance_structure()
         {
             name = "Estructura de Mantenimiento";
@@ -33,7 +33,7 @@ namespace Taller3DGrupal
         // Método para realizar la función principal
         public override int Function(int MaximoDeEstructuras)
         {
-            return MaximoDeEstructuras += 1; // Incrementa la capacidad de construcción cada turno
+            return MaximoDeEstructuras += capacidadConstruccion; // Incrementa la capacidad de construcción cada turno
         }
 
         // El método para recibir daño permanece igual
