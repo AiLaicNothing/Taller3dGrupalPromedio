@@ -37,7 +37,7 @@ namespace Taller3DGrupal
             }
             else if ( hP <= 0)
             {
-                Console.WriteLine($"The enemy {name} has been defeated.";
+                Console.WriteLine($"The enemy {name} has been defeated.");
             }
         }
 
