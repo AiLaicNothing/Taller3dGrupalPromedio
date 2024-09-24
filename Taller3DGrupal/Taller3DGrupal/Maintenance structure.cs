@@ -27,13 +27,13 @@ namespace Taller3DGrupal
 
         public override int Build(int dineroDelJugador)
         {
-            return dineroDelJugador -= precio;
+            return dineroDelJugador -= price;
         }
 
         // Método para realizar la función principal
         public override int Function(int MaximoDeEstructuras)
         {
-            return MaximoDeEstructuras += capacidadConstruccion; // Incrementa la capacidad de construcción cada turno
+            return MaximoDeEstructuras += 1; // Incrementa la capacidad de construcción cada turno
         }
 
         // El método para recibir daño permanece igual
